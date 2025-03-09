@@ -54,11 +54,11 @@ resource keyvault 'Microsoft.KeyVault/vaults@2023-07-01' ={
         permissions: {secrets:['list','get','set']}
       }
       { tenantId: subscription().tenantId
-        objectId: '679022e4-7693-4c93-85f3-dc207e51f1f1' // Replace this with your user/group ObjectID
+        objectId: '956168e1-0706-4e5c-8b3e-d83a35ba8ef6' // Replace this with your user/group ObjectID
         permissions: {secrets:['list','get','set']}
       }
       { tenantId: subscription().tenantId
-        objectId: '078cc32d-3a74-446a-bebc-a26a5690445a' // Replace this with your user/group ObjectID
+        objectId: '916bf4c2-47ff-4e04-8ad4-7a1b0fdac897' // Replace this with your user/group ObjectID
         permissions: {secrets:['list','get']}
       }
     ]
