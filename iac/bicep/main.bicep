@@ -33,7 +33,7 @@ param purviewrg string= 'rg-datagovernance'
 param purview_location string= 'northeurope'
 
 @description('Resource Name of new or existing Purview Account. Must be globally unique. Specify a resource name if either create_purview=true or enable_purview=true')
-param purview_name string = 'KdiPocDG' // Replace with a Globally unique name
+param purview_name string = 'KdiNewPocDG' // Replace with a Globally unique name
 
 @description('Flag to indicate whether auditing of data platform resources should be enabled')
 param enable_audit bool = true
@@ -106,7 +106,7 @@ module kv './modules/keyvault.bicep' = {
   scope: fabric_rg
   params:{
      location: fabric_rg.location
-     keyvault_name: 'kv-kdifabpoc'
+     keyvault_name: 'ba-kv01'
      cost_centre_tag: cost_centre_tag
      owner_tag: owner_tag
      sme_tag: sme_tag
