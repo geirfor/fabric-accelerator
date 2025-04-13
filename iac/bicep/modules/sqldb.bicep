@@ -29,16 +29,16 @@ param database_sku_name string ='GP_S_Gen5_1'
 
 @description('Time in minutes after which database is automatically paused')
 param auto_pause_duration int =60
-
+/*
 @description('Flag to indicate whether to enable integration of data platform resources with either an existing or new Purview resource')
 param enable_purview bool
-
+*/
 @description('Flag to indicate whether to enable audit logging of SQL Server')
 param enable_audit bool = false
 
-@description('Resource Name of new or existing Purview Account. Specify a resource name if create_purview=true or enable_purview=true')
+/* @description('Resource Name of new or existing Purview Account. Specify a resource name if create_purview=true or enable_purview=true')
 param purview_resource object
-
+*/
 @description('Resource name of audit storage account.')
 param audit_storage_name string
 
@@ -138,7 +138,7 @@ resource readerRoleDefinition 'Microsoft.Authorization/roleDefinitions@2018-01-0
   scope: subscription()
   name: 'acdd72a7-3385-48ef-bd42-f606fba81ae7'
 }
-
+/*
 resource grant_purview_reader_role 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = if (enable_purview){
   name: guid(subscription().subscriptionId, sqlserver.name, readerRoleDefinition.id)
   scope: sqlserver
@@ -147,7 +147,7 @@ resource grant_purview_reader_role 'Microsoft.Authorization/roleAssignments@2020
     principalId: purview_resource.identity.principalId
     roleDefinitionId: readerRoleDefinition.id
   }
-}
+}*/
 output sqlserver_uniquename string = sqlserver.name
 output database_name string = database.name
 output sqlserver_resource object = sqlserver
