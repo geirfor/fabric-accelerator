@@ -21,7 +21,7 @@ param sme_tag string ='devgeiforsm-azadmin@devkriminalomsorg.onmicrosoft.com'
 param deployment_suffix string = utcNow()
 
 @description('Flag to indicate whether to create a new Purview resource with this data platform deployment')
-param create_purview bool = false
+//param create_purview bool = false
 
 @description('Flag to indicate whether to enable integration of data platform resources with either an existing or new Purview resource')
 param enable_purview bool = true
@@ -33,7 +33,7 @@ param purviewrg string= 'rg-datagovernance'
 param purview_location string= 'northeurope'
 
 @description('Resource Name of new or existing Purview Account. Must be globally unique. Specify a resource name if either create_purview=true or enable_purview=true')
-param purview_name string = 'KdiNewPocDG' // Replace with a Globally unique name
+//param purview_name string = 'KdiNewPocDG' // Replace with a Globally unique name
 
 @description('Flag to indicate whether auditing of data platform resources should be enabled')
 param enable_audit bool = true
@@ -44,7 +44,7 @@ param auditrg string= 'rg-audit'
 
 // Variables
 var fabric_deployment_name = 'fabric_dataplatform_deployment_${deployment_suffix}'
-var purview_deployment_name = 'purview_deployment_${deployment_suffix}'
+//var purview_deployment_name = 'purview_deployment_${deployment_suffix}'
 var keyvault_deployment_name = 'keyvault_deployment_${deployment_suffix}'
 var audit_deployment_name = 'audit_deployment_${deployment_suffix}'
 var controldb_deployment_name = 'controldb_deployment_${deployment_suffix}'
@@ -167,7 +167,7 @@ module controldb './modules/sqldb.bicep' = {
      auto_pause_duration: 60
      database_sku_name: 'GP_S_Gen5_1' 
      enable_purview: enable_purview
-     purview_resource: enable_purview ? purview.outputs.purview_resource : {}
+   //  purview_resource: enable_purview ? purview.outputs.purview_resource : {}
      enable_audit: false
      audit_storage_name: enable_audit?audit_integration.outputs.audit_storage_uniquename:''
      auditrg: enable_audit?audit_rg.name:''
