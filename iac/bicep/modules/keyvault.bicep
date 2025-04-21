@@ -50,11 +50,11 @@ resource keyvault 'Microsoft.KeyVault/vaults@2023-07-01' ={
     // Default Access Policies. Replace the ObjectID's with your user/group id
     accessPolicies:[
       { tenantId: subscription().tenantId
-        objectId: '3ba2ddf7-4719-4271-895f-ca986283bd2d' // Replace this with your user/group ObjectID
+        objectId: '7977fa2b-dfc0-4483-9046-9354fd0925e9' // Replace this with your user/group ObjectID
         permissions: {secrets:['list','get','set']}
       }
       { tenantId: subscription().tenantId
-        objectId: '078cc32d-3a74-446a-bebc-a26a5690445a' // Replace this with your user/group ObjectID
+        objectId: 'b7011606-01c3-42cd-ac61-10302393c017' // Replace this with your user/group ObjectID
         permissions: {secrets:['list','get','set']}
       }
     ]
