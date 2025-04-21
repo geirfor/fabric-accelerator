@@ -16,8 +16,13 @@ jobs:
     #Log into Azure
     - uses: azure/login@v1
       with:
-           creds: '{"clientId":"${{ secrets.ACTION_SPN_CLIENTID }}","clientSecret":"${{ secrets.ACTION_SPN_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-
+        creds: >
+          {
+            "clientId": "${{ secrets.ACTION_SPN_CLIENTID }}",
+            "clientSecret": "${{ secrets.ACTION_SPN_SECRET }}",
+            "subscriptionId": "${{ secrets.SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.TENANT_ID }}"
+          }
     # Deploy Bicep file
     - name: deploy
       uses: azure/arm-deploy@v1
