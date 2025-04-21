@@ -1,22 +1,31 @@
 name: Provision Fabric Data Platform
-on: workflow_dispatch 
-# on:
-#   push:
-#     branches:
-#         - main
-#     paths:
-#         - '**.bicep'
+on: workflow_dispatch
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     # Checkout code
     - uses: actions/checkout@v3
-    
-    #Log into Azure
+
+    # Login to Azure
     - uses: azure/login@v1
       with:
-           creds: '{"clientId":"${{ secrets.ACTION_SPN_CLIENTID }}","clientSecret":"${{ secrets.ACTION_SPN_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+        creds: >
+          {
+            "clientId": "${{ secrets.ACTION_SPN_CLIENTID }}",
+            "clientSecret": "${{ secrets.ACTION_SPN_SECRET }}",
+            "subscriptionId": "${{ secrets.SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.TENANT_ID }}"
+          }
+
+    # Debug secrets (for å verifisere de er injisert riktig)
+    - name: Debug Secrets
+      run: |
+        echo "Client ID: ${{ secrets.ACTION_SPN_CLIENTID }}"
+        echo "Tenant ID: ${{ secrets.TENANT_ID }}"
+        echo "Subscription ID: ${{ secrets.SUBSCRIPTION_ID }}"
+        # Ikke echo client secret!
 
     # Deploy Bicep file
     - name: deploy
@@ -26,5 +35,4 @@ jobs:
         region: northeurope
         subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
         template: iac/bicep/main.bicep
-        # parameters: 'k1=v1 k2=v2 k3=v3'
         failOnStdErr: false
