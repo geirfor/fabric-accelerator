@@ -12,10 +12,10 @@ param rglocation string = 'westeurope'
 param cost_centre_tag string = 'MCAPS'
 
 @description('System Owner tag that will be applied to all resources in this deployment')
-param owner_tag string = 'devgeiforsm-azadmin@devkriminalomsorg.onmicrosoft.com'
+param owner_tag string = 'geir.forsmo.atea@siva.no'
 
 @description('Subject Matter EXpert (SME) tag that will be applied to all resources in this deployment')
-param sme_tag string ='devgeiforsm-azadmin@devkriminalomsorg.onmicrosoft.com'
+param sme_tag string ='geir.forsmo.atea@siva.no'
 
 @description('Timestamp that will be appendedto the deployment name')
 param deployment_suffix string = utcNow()
