@@ -11,7 +11,7 @@ jobs:
     # Login to Azure
     - uses: azure/login@v1
       with:
-        creds: >
+        creds: 
           {
             "clientId": "${{ secrets.ACTION_SPN_CLIENTID }}",
             "clientSecret": "${{ secrets.ACTION_SPN_SECRET }}",
