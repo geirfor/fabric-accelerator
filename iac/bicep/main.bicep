@@ -6,7 +6,7 @@ targetScope = 'subscription'
 param dprg string= 'rg-fabric'
 
 @description('Microsoft Fabric Resource group location')
-param rglocation string = 'northeurope'
+param rglocation string = 'westeurope'
 
 @description('Cost Centre tag that will be applied to all resources in this deployment')
 param cost_centre_tag string = 'MCAPS'
@@ -20,7 +20,7 @@ param sme_tag string ='devgeiforsm-azadmin@devkriminalomsorg.onmicrosoft.com'
 @description('Timestamp that will be appendedto the deployment name')
 param deployment_suffix string = utcNow()
 
-/* @description('Flag to indicate whether to create a new Purview resource with this data platform deployment')
+@description('Flag to indicate whether to create a new Purview resource with this data platform deployment')
 param create_purview bool = false
 
 @description('Flag to indicate whether to enable integration of data platform resources with either an existing or new Purview resource')
@@ -30,11 +30,11 @@ param enable_purview bool = true
 param purviewrg string= 'rg-datagovernance'
 
 @description('Location of Purview resource. This may not be same as the Fabric resource group location')
-param purview_location string= 'northeurope'
+param purview_location string= 'westeurope'
 
 @description('Resource Name of new or existing Purview Account. Must be globally unique. Specify a resource name if either create_purview=true or enable_purview=true')
 param purview_name string = 'KdiNewPocDG' // Replace with a Globally unique name
-*/
+
 @description('Flag to indicate whether auditing of data platform resources should be enabled')
 param enable_audit bool = true
 
@@ -44,7 +44,7 @@ param auditrg string= 'rg-audit'
 
 // Variables
 var fabric_deployment_name = 'fabric_dataplatform_deployment_${deployment_suffix}'
-//var purview_deployment_name = 'purview_deployment_${deployment_suffix}'
+var purview_deployment_name = 'purview_deployment_${deployment_suffix}'
 var keyvault_deployment_name = 'keyvault_deployment_${deployment_suffix}'
 var audit_deployment_name = 'audit_deployment_${deployment_suffix}'
 var controldb_deployment_name = 'controldb_deployment_${deployment_suffix}'
@@ -60,7 +60,6 @@ resource fabric_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = {
   }
 }
 
-/*
 // Create purview resource group
 resource purview_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = if (create_purview) {
   name: purviewrg 
@@ -71,8 +70,8 @@ resource purview_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = if (creat
          SME: sme_tag
    }
  }
-*/
- // Create audit resource group
+
+// Create audit resource group
 resource audit_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = if(enable_audit) {
   name: auditrg 
   location: rglocation
@@ -82,7 +81,7 @@ resource audit_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = if(enable_a
          SME: sme_tag
    }
  }
-/*
+
 // Deploy Purview using module
 module purview './modules/purview.bicep' = if (create_purview || enable_purview) {
   name: purview_deployment_name
@@ -99,7 +98,7 @@ module purview './modules/purview.bicep' = if (create_purview || enable_purview)
   }
   
 }
-*/
+
 // Deploy Key Vault with default access policies using module
 module kv './modules/keyvault.bicep' = {
   name: keyvault_deployment_name
@@ -110,9 +109,9 @@ module kv './modules/keyvault.bicep' = {
      cost_centre_tag: cost_centre_tag
      owner_tag: owner_tag
      sme_tag: sme_tag
-   //  purview_account_name: enable_purview ? purview.outputs.purview_account_name : ''
-   //  purviewrg: enable_purview ? purviewrg : ''
-   //  enable_purview: enable_purview
+     purview_account_name: enable_purview ? purview.outputs.purview_account_name : ''
+     purviewrg: enable_purview ? purviewrg : ''
+     enable_purview: enable_purview
   }
 }
 
@@ -166,8 +165,8 @@ module controldb './modules/sqldb.bicep' = {
      ad_admin_sid:  kv_ref.getSecret('sqlserver-ad-admin-sid')  
      auto_pause_duration: 60
      database_sku_name: 'GP_S_Gen5_1' 
-   //  enable_purview: enable_purview
-   //  purview_resource: enable_purview ? purview.outputs.purview_resource : {}
+     enable_purview: enable_purview
+     purview_resource: enable_purview ? purview.outputs.purview_resource : {}
      enable_audit: false
      audit_storage_name: enable_audit?audit_integration.outputs.audit_storage_uniquename:''
      auditrg: enable_audit?audit_rg.name:''
