@@ -112,7 +112,7 @@ module kv './modules/keyvault.bicep' = {
      sme_tag: sme_tag
    //  purview_account_name: enable_purview ? purview.outputs.purview_account_name : ''
    //  purviewrg: enable_purview ? purviewrg : ''
-     enable_purview: enable_purview
+    // enable_purview: enable_purview
   }
 }
 
