@@ -67,7 +67,7 @@ resource keyvault 'Microsoft.KeyVault/vaults@2023-07-01' ={
 //    scope: resourceGroup(purviewrg)
 //  }
   
-resource this_keyvault_accesspolicy 'Microsoft.KeyVault/vaults/accessPolicies@2022-07-01' = if(enable_purview) {
+//resource this_keyvault_accesspolicy 'Microsoft.KeyVault/vaults/accessPolicies@2022-07-01' = if(enable_purview) {
 //  name: 'add'
 //  parent: keyvault
 //  properties: {
