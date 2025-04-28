@@ -21,7 +21,7 @@ param sme_tag string ='devgeiforsm-azadmin@devkriminalomsorg.onmicrosoft.com'
 param deployment_suffix string = utcNow()
 
 @description('Flag to indicate whether to create a new Purview resource with this data platform deployment')
-param create_purview bool = true
+param create_purview bool = false
 
 @description('Flag to indicate whether to enable integration of data platform resources with either an existing or new Purview resource')
 param enable_purview bool = true
@@ -33,7 +33,7 @@ param purviewrg string= 'rg-datagovernance'
 param purview_location string= 'westeurope'
 
 @description('Resource Name of new or existing Purview Account. Must be globally unique. Specify a resource name if either create_purview=true or enable_purview=true')
-param purview_name string = 'KdiNewPocDG' // Replace with a Globally unique name
+param purview_name string = 'ContosoDG' // Replace with a Globally unique name
 
 @description('Flag to indicate whether auditing of data platform resources should be enabled')
 param enable_audit bool = true
@@ -60,6 +60,7 @@ resource fabric_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = {
   }
 }
 
+
 // Create purview resource group
 resource purview_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = if (create_purview) {
   name: purviewrg 
@@ -71,7 +72,7 @@ resource purview_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = if (creat
    }
  }
 
-// Create audit resource group
+ // Create audit resource group
 resource audit_rg  'Microsoft.Resources/resourceGroups@2024-03-01' = if(enable_audit) {
   name: auditrg 
   location: rglocation
