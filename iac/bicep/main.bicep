@@ -6,7 +6,7 @@ targetScope = 'subscription'
 param dprg string= 'rg-fabric'
 
 @description('Microsoft Fabric Resource group location')
-param rglocation string = 'westeurope'
+param rglocation string = 'northeurope'
 
 @description('Cost Centre tag that will be applied to all resources in this deployment')
 param cost_centre_tag string = 'MCAPS'
