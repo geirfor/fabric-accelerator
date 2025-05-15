@@ -8,9 +8,9 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "cc80a0ab-603d-4df9-bdfc-c35a7e8ab095",
+# META       "default_lakehouse": "3c07ee71-688b-4a1d-80fc-a726f8b583d8",
 # META       "default_lakehouse_name": "lh_silver",
-# META       "default_lakehouse_workspace_id": "8d8d00a7-0e8a-4e3b-8c0e-8dcafac7adec"
+# META       "default_lakehouse_workspace_id": "503a58c5-8251-4cfb-83de-3ba1bad35023"
 # META     }
 # META   }
 # META }
@@ -187,6 +187,18 @@ display(df)
 
 df = readLHTable("lh_fabricEvents","Tables/jobs/pipelineJobs","582b9e24-0962-4fd0-aee5-647d9c200685", None, ["id","data","EventProcessedUtcTime"])
 display(df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+hwm = getHighWaterMark("lh_fabricEvents","Tables/jobs/pipelineJobs","EventProcessedUtcTime", "2025-02-07 14:00:00.0000000", "2025-02-08 14:00:00.0000000", "582b9e24-0962-4fd0-aee5-647d9c200685")
+print(hwm)
 
 # METADATA ********************
 
