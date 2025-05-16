@@ -440,7 +440,7 @@
   "streams": [
     {
       "id": "8cf2cc6f-bbd9-487b-8744-e424af00537e",
-      "name": "es_fabricEvents-stream",
+      "name": "custom_fabricEvents-stream",
       "type": "DefaultStream",
       "properties": {},
       "inputNodes": [
@@ -471,7 +471,7 @@
       "type": "Filter",
       "inputNodes": [
         {
-          "name": "es_fabricEvents-stream"
+          "name": "custom_fabricEvents-stream"
         }
       ],
       "properties": {
@@ -494,7 +494,7 @@
       },
       "inputSchemas": [
         {
-          "name": "es_fabricEvents-stream",
+          "name": "custom_fabricEvents-stream",
           "schema": {
             "columns": [
               {
@@ -579,7 +579,7 @@
       "type": "Filter",
       "inputNodes": [
         {
-          "name": "es_fabricEvents-stream"
+          "name": "custom_fabricEvents-stream"
         }
       ],
       "properties": {
@@ -602,7 +602,7 @@
       },
       "inputSchemas": [
         {
-          "name": "es_fabricEvents-stream",
+          "name": "custom_fabricEvents-stream",
           "schema": {
             "columns": [
               {
@@ -687,7 +687,7 @@
       "type": "Filter",
       "inputNodes": [
         {
-          "name": "es_fabricEvents-stream"
+          "name": "custom_fabricEvents-stream"
         }
       ],
       "properties": {
@@ -710,7 +710,7 @@
       },
       "inputSchemas": [
         {
-          "name": "es_fabricEvents-stream",
+          "name": "custom_fabricEvents-stream",
           "schema": {
             "columns": [
               {
